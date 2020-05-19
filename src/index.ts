@@ -5,7 +5,7 @@ import express from 'express';
 import exampleRoute from "./routes/example";
 
 const app = express();
-const port = process.env.SERVER_PORT; // default port to listen
+const port = (process.env.SERVER_PORT || 3001); // default port to listen
 
 app.use("/example", exampleRoute);
 // define a route handler for the default home page
