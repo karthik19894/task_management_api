@@ -3,9 +3,12 @@ dotenv.config();
 
 import express from 'express';
 import exampleRoute from "./routes/example";
+import mongoose from 'mongoose';
 
 const app = express();
 const port = (process.env.SERVER_PORT || 3001); // default port to listen
+
+// const db = mongoose.connect(process.env.MONGO_URL);
 
 app.use("/example", exampleRoute);
 // define a route handler for the default home page
