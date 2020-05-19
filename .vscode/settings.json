@@ -3,5 +3,6 @@
   "javascript.format.enable": false,
   "editor.codeActionsOnSave": {
     "source.fixAll.tslint": true
-  }
+  },
+  "prettier.tslintIntegration": true
 }

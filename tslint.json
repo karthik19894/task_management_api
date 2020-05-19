@@ -2,7 +2,7 @@
   "defaultSeverity": "error",
   "extends": [
     "tslint:recommended",
-    "tslint-config-standard",
+    "tslint-plugin-prettier",
     "tslint-config-prettier"
   ],
   "jsRules": {},
