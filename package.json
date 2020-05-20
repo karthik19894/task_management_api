@@ -27,10 +27,11 @@
     "@types/mongoose": "^5.7.20",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "mongoose": "^5.9.14"
+    "mongoose": "^5.9.15"
   },
   "devDependencies": {
     "@types/express": "^4.17.6",
+    "@types/mongoose": "^5.7.21",
     "@types/node": "^14.0.1",
     "fs-extra": "^9.0.0",
     "nodemon": "^2.0.4",
