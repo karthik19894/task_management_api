@@ -13,7 +13,7 @@ const secrets_1 = require("./config/secrets");
 dotenv_1.default.config();
 dotenv_1.default.config();
 const app = express_1.default();
-const port = process.env.SERVER_PORT || 5000; // default port to listen
+const port = process.env.PORT || 5000; // default port to listen
 const uri = process.env.ATLAS_URI;
 app.use(cookie_parser_1.default(secrets_1.COOKIE_SECRET));
 app.use(cors_1.default({ credentials: true, origin: 'http://tasks.com:3000' }));
