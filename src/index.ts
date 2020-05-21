@@ -12,7 +12,7 @@ dotenv.config();
 
 dotenv.config();
 const app = express();
-const port = process.env.SERVER_PORT || 5000; // default port to listen
+const port = process.env.PORT || 5000; // default port to listen
 const uri = process.env.ATLAS_URI;
 
 app.use(cookieParser(COOKIE_SECRET))
