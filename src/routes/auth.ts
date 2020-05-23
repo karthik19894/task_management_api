@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { getToken, getConnectionUrl, verifyToken } from '../auth/googleOAuth2'
+import config from '../config'
 
 const authRouter = Router();
 
@@ -8,7 +9,7 @@ authRouter.get('/token', async (req, res) => {
     res.status(201)
         .cookie('auth_token', result, {
             httpOnly: true,
-            domain: 'tasks.com'
+            domain: config.COOKIE_DOMAIN
         })
     res.send();
 });

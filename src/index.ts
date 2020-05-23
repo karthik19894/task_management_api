@@ -6,7 +6,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 
 import authRouter from "./routes/auth";
-import { COOKIE_SECRET } from "./config/secrets";
+import secrets from "./config/secrets";
 
 dotenv.config();
 
@@ -15,8 +15,8 @@ const app = express();
 const port = process.env.PORT || 5000; // default port to listen
 const uri = process.env.ATLAS_URI;
 
-app.use(cookieParser(COOKIE_SECRET));
-app.use(cors({ credentials: true, origin: "http://tasks.com:3000" }));
+app.use(cookieParser(secrets.COOKIE_SECRET));
+app.use(cors({ credentials: true, origin: ["http://tasks.com:3000", 'https://tasks-manager-web-app.herokuapp.com'] }));
 
 mongoose
   .connect(uri, { useNewUrlParser: true, useFindAndModify: false })
