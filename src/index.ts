@@ -7,6 +7,7 @@ import cors from "cors";
 
 import authRouter from "./routes/auth";
 import secrets from "./config/secrets";
+import { verifyToken } from './auth/googleOAuth2'
 
 dotenv.config();
 
@@ -18,6 +19,19 @@ const uri = process.env.ATLAS_URI;
 app.use(cookieParser(secrets.COOKIE_SECRET));
 app.use(cors({ credentials: true, origin: ["http://tasks.com:3000", 'https://tasks-manager-web-app.herokuapp.com'] }));
 
+const validateToken = async (req: express.Request, res: express.Response, next: () => void) => {
+  try {
+    console.log(req.headers)
+    const authToken = req.cookies.auth_token;
+    const userId = await verifyToken(authToken);
+    console.log("user id", userId);
+    next();
+  } catch (err) {
+    console.log(err)
+    res.status(401).send("Invalid token");
+  }
+}
+
 mongoose
   .connect(uri, { useNewUrlParser: true, useFindAndModify: false })
   .then(() => console.log("mongo connection established successfully"))
@@ -25,7 +39,7 @@ mongoose
 
 app.use(express.json());
 app.use("/oauth2", authRouter);
-app.use("/label", labelRouter);
+app.use("/label", validateToken, labelRouter);
 // define a route handler for the default home page
 app.get("/", (req, res) => {
   res.send("Hello world!");

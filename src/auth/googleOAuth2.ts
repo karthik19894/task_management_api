@@ -42,6 +42,6 @@ export const verifyToken = async (idToken: string) => {
             return userid;
         })
         .catch((err) => {
-            return "error " + err
+            throw new Error("Invalid token")
         })
 }

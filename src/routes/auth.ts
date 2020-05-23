@@ -19,9 +19,4 @@ authRouter.get('/login', (req, res) => {
     res.redirect(connectionUrl);
 });
 
-authRouter.get('/verify', async (req, res) => {
-    const result = await verifyToken(String(req.query.code))
-    res.send(String(result));
-});
-
 export default authRouter;
