@@ -42,7 +42,7 @@ app.use("/oauth2", authRouter);
 app.use("/label", validateToken, labelRouter);
 // define a route handler for the default home page
 app.get("/", (req, res) => {
-  res.send("Hello world!");
+  res.send("Hello world! - " + String(process.env.NODE_ENV || 'noenv'));
 });
 
 app.listen(port, () => {
