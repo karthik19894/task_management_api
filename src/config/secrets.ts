@@ -10,7 +10,7 @@ const prod = {
     GOOGLE_REDIRECT_URI: 'https://tasks-manager-web-app.herokuapp.com/login/callback'
 }
 
-const config = process.env.NODE_ENV === 'prod'
+const config = process.env.NODE_ENV === 'production'
     ? prod
     : dev;
 

@@ -6,7 +6,7 @@ const prod = {
     COOKIE_DOMAIN: 'herokuapp.com'
 }
 
-const config = process.env.NODE_ENV === 'prod'
+const config = process.env.NODE_ENV === 'production'
     ? prod
     : dev;
 
