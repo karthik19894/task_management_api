@@ -1,11 +1,11 @@
 import { google } from 'googleapis';
-import { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_REDIRECT_URI } from '../config/secrets'
+import secrets from '../config/secrets'
 
 const oauth2 = google.oauth2('v2');
 const Oauth2Client = new google.auth.OAuth2(
-    GOOGLE_CLIENT_ID,
-    GOOGLE_CLIENT_SECRET,
-    GOOGLE_REDIRECT_URI,
+    secrets.GOOGLE_CLIENT_ID,
+    secrets.GOOGLE_CLIENT_SECRET,
+    secrets.GOOGLE_REDIRECT_URI,
 );
 const defaultScope = ['https://www.googleapis.com/auth/userinfo.profile']
 
@@ -34,7 +34,7 @@ export const getToken = async (code: string) => {
 export const verifyToken = async (idToken: string) => {
     return Oauth2Client.verifyIdToken({
         idToken,
-        audience: GOOGLE_CLIENT_ID ,
+        audience: secrets.GOOGLE_CLIENT_ID,
     })
         .then((ticket) => {
             const payload = ticket.getPayload();
@@ -42,6 +42,6 @@ export const verifyToken = async (idToken: string) => {
             return userid;
         })
         .catch((err) => {
-            return "error " + err
+            throw new Error("Invalid token")
         })
 }
