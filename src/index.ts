@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 
 import authRouter from "./routes/auth";
+import tasksRouter from "./routes/tasks";
 import secrets from "./config/secrets";
 import { verifyToken } from './auth/googleOAuth2'
 
@@ -40,6 +41,7 @@ mongoose
 app.use(express.json());
 app.use("/oauth2", authRouter);
 app.use("/label", validateToken, labelRouter);
+app.use("/tasks", validateToken, tasksRouter);
 // define a route handler for the default home page
 app.get("/", (req, res) => {
   res.send("Hello world!");
