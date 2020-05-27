@@ -1,10 +1,10 @@
 export class Task{
-    id : String;
-    name : String;
-    category : String;
-    labels : String[];
-    userId : String;
-    description : String;
+    id : string;
+    name : string;
+    category : string;
+    labels : string[];
+    userId : string;
+    description : string;
     createdTimeStamp : Date;
 
 }
