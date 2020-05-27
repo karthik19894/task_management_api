@@ -6,5 +6,5 @@ export class Task{
     userId : string;
     description : string;
     createdTimeStamp : Date;
-
+    dueDate : Date;
 }
