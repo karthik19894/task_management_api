@@ -10,8 +10,8 @@ const TaskSchema: Schema = new Schema({
     labels: Schema.Types.Array,
     userId: Schema.Types.Number,
     description: Schema.Types.String,
-    createdTimeStamp: Schema.Types.Date
-
+    createdTimeStamp: Schema.Types.Date,
+    dueDate : Schema.Types.Date
 }, schemaOptions);
 
 export default model('Task', TaskSchema);

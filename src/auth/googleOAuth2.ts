@@ -23,11 +23,30 @@ export const getToken = async (code: string) => {
             Oauth2Client.setCredentials(tokens);
             return tokens
         })
-        .then((tokens) => {
-            return tokens.id_token;
+        .then(async (tokens) => {
+            const { id_token } = tokens;
+            const { userId, name, exp } = await verifyAndGetPayload(id_token);
+            return { id_token: tokens.id_token, userId, name, exp };
         })
         .catch((err) => {
-            return 'The API returned an error: ' + err
+            throw err;
+        })
+}
+
+const verifyAndGetPayload = async (idToken: string) => {
+    return Oauth2Client.verifyIdToken({
+        idToken,
+        audience: secrets.GOOGLE_CLIENT_ID,
+    })
+        .then((ticket) => {
+            const payload = ticket.getPayload();
+            const userId = payload.sub;
+            const name = payload.name;
+            const exp = payload.exp;
+            return { userId, name, exp };
+        })
+        .catch((err) => {
+            throw new Error("Invalid token")
         })
 }
 
