@@ -8,7 +8,7 @@ authRouter.get('/token', async (req, res) => {
     try {
         const result = await getToken(String(req.query.code))
         const { id_token, userId, name, exp } = result;
-        const cookieConfig = { domain: config.COOKIE_DOMAIN, expires: new Date(exp * 1000) }
+        const cookieConfig = { domain: config.COOKIE_DOMAIN, expires: new Date(exp * 1000), secure: true }
         res.status(201)
             .cookie('auth_token', id_token, {
                 httpOnly: true,
