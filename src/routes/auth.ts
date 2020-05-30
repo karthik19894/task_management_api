@@ -17,7 +17,7 @@ authRouter.get('/token', async (req, res) => {
             })
             .cookie('user_id', userId, cookieConfig)
             .cookie('user_name', name, cookieConfig)
-        res.send();
+            .send("Login succeeded")
     } catch (err) {
         res.status(401).send("Login failed");
     }
