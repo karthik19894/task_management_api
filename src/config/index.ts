@@ -3,7 +3,7 @@ const dev = {
 }
 
 const prod = {
-    COOKIE_DOMAIN: 'eazytasks.herokuapp.com'
+    COOKIE_DOMAIN: 'https://eazytasks.herokuapp.com'
 }
 
 const config = process.env.NODE_ENV === 'production'
