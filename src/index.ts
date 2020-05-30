@@ -19,7 +19,7 @@ const port = process.env.PORT || 5000; // default port to listen
 const uri = process.env.ATLAS_URI;
 
 app.use(cookieParser(secrets.COOKIE_SECRET));
-app.use(cors({ credentials: true, origin: ["http://tasks.com:3000", 'https://tasks-manager-web-app.herokuapp.com'] }));
+app.use(cors({ credentials: true, origin: ["http://tasks.com:3000", 'https://tasks-manager-web-app.herokuapp.com', 'https://eazytasks.herokuapp.com'] }));
 
 const validateToken = async (req: express.Request, res: express.Response, next: () => void) => {
   try {
