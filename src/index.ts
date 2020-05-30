@@ -7,6 +7,7 @@ import cors from "cors";
 
 import authRouter from "./routes/auth";
 import tasksRouter from "./routes/tasks";
+import categoryRouter from './routes/categories';
 import secrets from "./config/secrets";
 import { verifyToken } from './auth/googleOAuth2'
 
@@ -22,10 +23,9 @@ app.use(cors({ credentials: true, origin: ["http://tasks.com:3000", 'https://tas
 
 const validateToken = async (req: express.Request, res: express.Response, next: () => void) => {
   try {
-    console.log(req.headers)
     const authToken = req.cookies.auth_token;
     const userId = await verifyToken(authToken);
-    console.log("user id", userId);
+    res.locals.userId = userId;
     next();
   } catch (err) {
     console.log(err)
@@ -42,6 +42,7 @@ app.use(express.json());
 app.use("/oauth2", authRouter);
 app.use("/label", validateToken, labelRouter);
 app.use("/tasks", validateToken, tasksRouter);
+app.use("/categories", validateToken, categoryRouter);
 // define a route handler for the default home page
 app.get("/", (req, res) => {
   res.send("Hello world!");
