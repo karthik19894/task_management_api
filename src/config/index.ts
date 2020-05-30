@@ -3,7 +3,7 @@ const dev = {
 }
 
 const prod = {
-    COOKIE_DOMAIN: 'herokuapp.com'
+    COOKIE_DOMAIN: '.herokuapp.com'
 }
 
 const config = process.env.NODE_ENV === 'production'
