@@ -1,5 +1,6 @@
 import { Label } from "../models/Label";
-
+import Task  from "../models/Task";
+ 
 export class LabelService {
   update(labelId: string, newLabel: any) {
     return Label.findByIdAndUpdate(
@@ -8,8 +9,8 @@ export class LabelService {
       { new: true }
     );
   }
-  findAll() {
-    return Label.find();
+  findAll(userId: string) {
+    return Task.aggregate([{$match: {"userId" : userId} },{$unwind:"$labels"}, {$group: {_id:"$labels",uniqueValues: {$addToSet: "$labels"}}}])
   }
 
   save(labelName: string) {

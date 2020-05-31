@@ -1,12 +1,15 @@
 import express = require("express");
 import { LabelService } from "../services/label-service";
+import { verifyToken } from "../auth/googleOAuth2";
 
 export const labelRouter = express.Router();
 const labelService = new LabelService();
 
 labelRouter.get("/", async (req, res) => {
   try {
-    const labels = await labelService.findAll();
+    const authToken = req.cookies.auth_token; 
+    const userId = await verifyToken(authToken);
+    const labels = await labelService.findAll(userId);
     res.status(200).send(labels);
   } catch (err) {
     console.log(err);
