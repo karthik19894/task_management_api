@@ -4,7 +4,7 @@ const schemaOptions: SchemaOptions = {
     timestamps: true
 };
 const UserSchema: Schema = new Schema({
-    id: Schema.Types.ObjectId,
+    id: Schema.Types.String,
     name: Schema.Types.String
 
 }, schemaOptions);

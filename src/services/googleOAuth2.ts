@@ -1,5 +1,7 @@
 import { google } from 'googleapis';
 import secrets from '../config/secrets'
+import UserService from './users';
+import CategoryService from './categories';
 
 const oauth2 = google.oauth2('v2');
 const Oauth2Client = new google.auth.OAuth2(
@@ -26,6 +28,18 @@ export const getToken = async (code: string) => {
         .then(async (tokens) => {
             const { id_token } = tokens;
             const { userId, name, exp } = await verifyAndGetPayload(id_token);
+            if (!await UserService.isUserExists(userId)) {
+                await UserService
+                    .create(name, userId)
+                    .then(async (res) => {
+                        await CategoryService
+                            .create("Personal", res.id)
+                            .then(() => console.log("User and default category created for the user " + res.id))
+                            .catch(() => console.log("Error in category creation"));
+                    })
+                    .catch(() => console.log("Error in user creation"))
+
+            }
             return { id_token: tokens.id_token, userId, name, exp };
         })
         .catch((err) => {

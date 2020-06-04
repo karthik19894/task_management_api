@@ -1,6 +1,6 @@
 import express = require("express");
 import { TasksService } from "../services/tasks-service";
-import {verifyToken} from "../auth/googleOAuth2"
+import {verifyToken} from "../services/googleOAuth2"
 import { Task } from "../dtos/task";
 
 
