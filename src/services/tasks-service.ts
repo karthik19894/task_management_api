@@ -14,6 +14,6 @@ export class TasksService {
     }
 
     static update(taskId: string, task: any) {
-        return Task.findByIdAndUpdate(taskId, task );
+        return Task.findByIdAndUpdate(taskId, task, { new: true });
     }
 }
