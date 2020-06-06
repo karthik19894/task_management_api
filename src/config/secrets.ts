@@ -7,7 +7,7 @@ const dev = {
 }
 
 const prod = {
-    GOOGLE_REDIRECT_URI: 'https://tasks-manager-web-app.herokuapp.com/login/callback'
+    GOOGLE_REDIRECT_URI: 'https://eazytasks.herokuapp.com/login/callback'
 }
 
 const config = process.env.NODE_ENV === 'production'
