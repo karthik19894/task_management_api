@@ -9,8 +9,7 @@ const tasksRouter = express.Router();
 tasksRouter.get("/", async (req, res) => {
   try {
     const category = req.body.category;
-    const authToken = req.cookies.authToken;
-    const userId = await verifyToken(authToken);
+    const userId = res.locals.userId;
     const tasks = await TasksService.findByUser(userId, category);
     res.status(200).send(tasks);
   } catch (err) {
@@ -21,8 +20,7 @@ tasksRouter.get("/", async (req, res) => {
 tasksRouter.post("/", async (req, res) => {
   try {
     const task: Task = req.body;
-    const authToken = req.cookies.authToken;
-    const userId = await verifyToken(authToken);
+    const userId = res.locals.userId;
     task.userId = userId
     const response = await TasksService.save(task);
     res.status(200).send(response);
