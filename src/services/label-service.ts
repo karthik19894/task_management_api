@@ -10,7 +10,11 @@ export class LabelService {
     );
   }
   findAll(userId: string) {
-    return Task.aggregate([{$match: {"userId" : userId} },{$unwind:"$labels"}, {$group: {_id:"$labels",uniqueValues: {$addToSet: "$labels"}}}])
+    return Task.aggregate([{$match: {"userId" : userId} },
+    {$unwind:"$labels"},
+    {$group: {_id:"$labels",uniqueValues: {$addToSet: "$labels"}}},
+    {$project : {array:true,_id:false}}])
+
   }
 
   save(labelName: string) {
