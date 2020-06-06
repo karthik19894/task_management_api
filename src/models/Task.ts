@@ -8,7 +8,7 @@ const TaskSchema: Schema = new Schema({
     name: Schema.Types.String,
     category: Schema.Types.String,
     labels: [Schema.Types.String],
-    userId: Schema.Types.Number,
+    userId: Schema.Types.String,
     description: Schema.Types.String,
     createdTimeStamp: Schema.Types.Date,
     dueDate: Schema.Types.Date
