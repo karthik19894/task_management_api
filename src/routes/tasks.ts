@@ -8,7 +8,7 @@ const tasksRouter = express.Router();
 
 tasksRouter.get("/", async (req, res) => {
   try {
-    const category = req.body.category;
+    const category = String(req.query.category || '');
     const userId = res.locals.userId;
     const tasks = await TasksService.findByUser(userId, category);
     res.status(200).send(tasks);
