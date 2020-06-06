@@ -1,6 +1,6 @@
 import { Label } from "../models/Label";
-import Task  from "../models/Task";
- 
+import Task from "../models/Task";
+
 export class LabelService {
   update(labelId: string, newLabel: any) {
     return Label.findByIdAndUpdate(
@@ -10,10 +10,10 @@ export class LabelService {
     );
   }
   findAll(userId: string) {
-    return Task.aggregate([{$match: {"userId" : userId} },
-    {$unwind:"$labels"},
-    {$group: {_id:"$labels",uniqueValues: {$addToSet: "$labels"}}},
-    {$project : {array:true,_id:false}}])
+    return Task.aggregate([{ $match: { "userId": userId } },
+    { $unwind: "$labels" },
+    { $group: { _id: "$labels", uniqueValues: { $addToSet: "$labels" } } },
+    { $project: { array: false, _id: true, uniqueValues: false } }])
 
   }
 

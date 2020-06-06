@@ -6,9 +6,9 @@ const labelService = new LabelService();
 
 labelRouter.get("/", async (req, res) => {
   try {
-    const userId = res.locals.userId; 
+    const userId = res.locals.userId;
     const labels = await labelService.findAll(userId);
-    res.status(200).send(labels);
+    res.status(200).send(labels.map(label => label._id));
   } catch (err) {
     console.log(err);
   }
