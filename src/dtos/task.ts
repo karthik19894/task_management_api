@@ -7,4 +7,5 @@ export class Task{
     description : string;
     createdTimeStamp : Date;
     dueDate : Date;
+    status : boolean;
 }

@@ -22,6 +22,7 @@ tasksRouter.post("/", async (req, res) => {
     const task: Task = req.body;
     const userId = res.locals.userId;
     task.userId = userId
+    task.status = false
     const response = await TasksService.save(task);
     res.status(200).send(response);
   } catch (err) {
